@@ -37,9 +37,10 @@
 #   POST /api/v1/servers/lockfiles  (Authorization: Bearer ouc_srv_...)
 #   GET  /agent/releases/latest     (signed release artifact for self-update)
 
+
 set -euo pipefail
 
-AGENT_VERSION="2026.06.10"
+AGENT_VERSION="2026.06.15.1"
 SELF_UPDATE_ENABLED="0"
 API_BASE="${OURCVES_API_BASE:-http://ourcves.gro.sv/api/v1}"
 INSTALL_URL="${OURCVES_INSTALL_URL:-https://raw.githubusercontent.com/artisan-build/ourcves-installer/main/ourcves-agent.sh}"
@@ -62,15 +63,19 @@ OURCVES_REPO_DISCOVERY_PATHS="${OURCVES_REPO_DISCOVERY_PATHS:-}"
 # self-update (fail-safe — manual --update still works).
 read -r -d '' AGENT_PUBLIC_KEY <<'OURCVES_PUBKEY' || true
 -----BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvLq+AMJA4zSySQGY6kIi
-WlQzU31rMTyYT2zRPjiwqX5DdWiQRrT4l1K1QG+9sAqryDrcLXqZxPdKX9+wQhc6
-fe/2ZDy4gQrdcJ/dKR+QebQkbSa/59T6gq8bNQmrdq9bQ5FP13iplU5EZ0pP4afh
-Q74hIHVPuQL4orN6nqDUd47wVNriLYBvlsXrSn9VSBtgT29AHK/mSvNs0ZIiO4KI
-eh1zJyroIDguYt58K87w34iI+yhyXwtBfJStR3yc9rJPuRUgAn7/5A7/AO5VVlN3
-9VUW3GxpUxLB9pzSfwkZW5x7FtJBrdHailVnt5Bu3J8eJ9IBVMHsJwlZNpC4syVa
-AwIDAQAB
+MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAxfpN/Co4onZwl5J3Wnjo
+ZXyHYWCLh7qxaieanmLy+EaMA5ZsdDJWhfBIWgVdw4GVYMDItMf6YHv7/uuNyCU0
+hPtCac6olLciX6FrxNKzSvlxe7KqUjJYFwlzAaR0/azRLr5FI/EA63uaRqKKKWM+
+bW8phoP1jJwYX3xBKRHAqCELqki6bB/mKIy51hiMPN8W7xok3M8YPu+GMcbrgV7U
+bZDZa3EyGWv5dYlCon/eVQvZRlZ5WhfQrLhlP9OuwKtdJDeAsR11Xv+ZdBH7sp6W
+M28zROx9Y6azzbufBno96/nkAWXhDl6eLZqRm7Z/YXpRnjXzZwIeaioOxotDlxwc
+7PKoq13iMwVlM/qsHfMgw5zDJVw9GHNfbrGZ4DmnQmL1clYs4CulLBsLDJdBSKB0
+v9PWc7/nZDmAeKSYwP4Wm2TYi/aMvGRcUKAv420NMxUg8Cj9rQQsJ/bMiIL6pZMM
+jP0kxW0A+/8OLw1fq8CcjCGAoZQsjxSZj/4Lnuum9cbsvyX7m1/5B0gtvJ6OjCq1
+P0xkYbf6d6c/ONsxOw5UJ+KOfP8VAWpC2Yly7QcPJOAMf/qjJJA3r1GmcMNE1cjt
++I5rELHbQ4Bgxvl15OSCxz0qlH6IskyXoxe8UQVJfYY7tzTTrN9Hl2wMSUXYJv9C
+ThApemiExYpJs1HxTD3tBm0CAwEAAQ==
 -----END PUBLIC KEY-----
-
 OURCVES_PUBKEY
 
 INSTALL_TOKEN=""
